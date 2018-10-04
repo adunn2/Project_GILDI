@@ -24,7 +24,7 @@ def signup():
 def success():
     return "Thank you for signing up!"
 
-@app.route("/geo", methods=('GET'))
+@app.route("/geo")
 def locateMe():
     return render_template('index.html')
 
