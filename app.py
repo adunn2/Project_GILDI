@@ -10,7 +10,7 @@ from database import db_session
 app = Flask(__name__)
 app.secret_key = os.environ['APP_SECRET_KEY']
 
-@app.route("/", methods=('GET', 'POST'))
+@app.route("/signup", methods=('GET', 'POST'))
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
@@ -24,7 +24,7 @@ def signup():
 def success():
     return "Thank you for signing up!"
 
-@app.route("/geo")
+@app.route("/")
 def locateMe():
     return render_template('index.html')
 
