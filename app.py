@@ -1,14 +1,11 @@
 import datetime
 import os
-import urllib.request
-import json
-import requests
+
 from flask import Flask, render_template, redirect, url_for
 from forms import SignupForm
 
 from models import Signups
 from database import db_session
-from requester import *
 
 app = Flask(__name__)
 app.secret_key = os.environ['APP_SECRET_KEY']
@@ -17,11 +14,6 @@ google_api_key = os.environ['GOOGLE_API_KEY']
 @app.route("/geo")
 def locateMe():
     return render_template('index.html', google_api_key=google_api_key )
-
-@app.route("/alerts")
-def alertMe():
-    response = requester.getWeatherAlerts()
-    return render_template('alerts.html', respose=response )
 
 @app.route("/", methods=('GET', 'POST'))
 def signup():
