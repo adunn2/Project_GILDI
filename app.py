@@ -15,6 +15,12 @@ google_api_key = os.environ['GOOGLE_API_KEY']
 def locateMe():
     return render_template('index.html', google_api_key=google_api_key )
 
+# @app.route("/alerts")
+# def alertMe():
+#
+#     return render_template('alerts.html', response=response )
+
+
 @app.route("/", methods=('GET', 'POST'))
 def signup():
     form = SignupForm()
