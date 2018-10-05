@@ -1,5 +1,7 @@
 import datetime
 import os
+import urllib.request
+import json
 import requests
 from flask import Flask, render_template, redirect, url_for
 from forms import SignupForm
