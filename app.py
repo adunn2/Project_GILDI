@@ -6,7 +6,7 @@ from forms import SignupForm
 
 from models import Signups
 from database import db_session
-from requests import getWeatherAlerts
+from requests import *
 
 app = Flask(__name__)
 app.secret_key = os.environ['APP_SECRET_KEY']
@@ -18,7 +18,7 @@ def locateMe():
 
 @app.route("/alerts")
 def alertMe():
-    response = getWeatherAlerts()
+    response = requests.getWeatherAlerts()
     return render_template('alerts.html', respose=response )
 
 @app.route("/", methods=('GET', 'POST'))
