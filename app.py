@@ -18,7 +18,7 @@ def locateMe():
 
 @app.route("/alerts")
 def alertMe():
-    response = utils.getWeatherAlerts()
+    response = getWeatherAlerts()
     return render_template('alerts.html', response=response )
 
 
