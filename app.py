@@ -6,6 +6,7 @@ from forms import SignupForm
 
 from models import Signups
 from database import db_session
+from utils import *
 
 app = Flask(__name__)
 app.secret_key = os.environ['APP_SECRET_KEY']
@@ -15,10 +16,10 @@ google_api_key = os.environ['GOOGLE_API_KEY']
 def locateMe():
     return render_template('index.html', google_api_key=google_api_key )
 
-# @app.route("/alerts")
-# def alertMe():
-#
-#     return render_template('alerts.html', response=response )
+@app.route("/alerts")
+def alertMe():
+    response = utils.getWeatherAlerts()
+    return render_template('alerts.html', response=response )
 
 
 @app.route("/", methods=('GET', 'POST'))
