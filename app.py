@@ -4,11 +4,10 @@ import requests
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from forms import SignupForm
-
 from models import Signups
 from database import db_session
 from utils import *
-from .nav import nav
+
 
 def create_app():
   app = Flask(__name__)
