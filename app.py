@@ -26,6 +26,10 @@ google_api_key = os.environ['GOOGLE_API_KEY']
 def index():
     return render_template('index.html')
 
+@app.route("/index2")
+def index():
+    return render_template('index2.html')
+
 @app.route("/", methods=('GET', 'POST'))
 def signup():
     form = SignupForm()
@@ -54,7 +58,7 @@ def alertMe():
         return render_template('alerts.html', response=features )
     else:
         return render_template('error.html', response_code=res.status_code )
-        
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
