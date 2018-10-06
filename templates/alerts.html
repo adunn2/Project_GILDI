@@ -33,11 +33,10 @@
       </p>
     </div>
     <h1>Active Weather alerts!</h1>
-      <h1 id="startLat"></h1><h1 id="startLng"></h1>
     <div class="container">
       <h1>Pick one</h1>
       {% for info in response %}
-      <p><a class="btn btn-primary btn-lg" href="{{school.key}}">{{info}}</a></p>
+      <p>{{info}}</p>
       {% endfor %}
     </div>
 
