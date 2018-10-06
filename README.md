@@ -16,3 +16,9 @@ $ docker-compose up -d
 ```
 
 3. hostIP:8080 to access the running project.
+
+4. Generating self signed ssl_certificate.
+```bash
+cd conf.d
+openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
+```
