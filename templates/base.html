@@ -1,69 +1,44 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Geolocation</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 10
-        });
-        infoWindow = new google.maps.InfoWindow;
+{# ``base.html`` is the template all our other templates derive from. While
+   Flask-Bootstrap ships with its own base, it is good form to create a custom
+   one for our app, as it allows customizing some aspects.
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+   Deriving from bootstap/base.html gives us a basic page scaffoling.
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
+   You can find additional information about template inheritance at
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
-    </script>
-  </body>
-</html>
+   http://jinja.pocoo.org/docs/templates/#template-inheritance
+#}
+{%- extends "bootstrap/base.html" %}
+
+{# We also set a default title, usually because we might forget to set one.
+   In our sample app, we will most likely just opt not to change it #}
+{% block title %}Sample App for Flask-Bootstrap{% endblock %}
+
+{# While we are at it, we also enable fixes for legacy browsers. First we
+   import the necessary macros: #}
+{% import "bootstrap/fixes.html" as fixes %}
+
+{# Then, inside the head block, we apply these. To not replace the header,
+   ``super()`` is used: #}
+{% block head %}
+{{super()}}
+
+{#- Docs: http://pythonhosted.org/Flask-Bootstrap/macros.html#fixes
+   The sample application already contains the required static files. #}
+{{fixes.ie8()}}
+{%- endblock %}
+
+{# Adding our own CSS files is also done here. Check the documentation at
+   http://pythonhosted.org/Flask-Bootstrap/basic-usage.html#available-blocks
+   for an overview. #}
+{% block styles -%}
+    {{super()}}  {# do not forget to call super or Bootstrap's own stylesheets
+                    will disappear! #}
+    <link rel="stylesheet" type="text/css"
+          href="{{url_for('static', filename='sample-app.css')}}">
+{% endblock %}
+
+{# Finally, round things out with navigation #}
+{% block navbar %}
+{{nav.frontend_top.render()}}
+{% endblock %}
