@@ -14,7 +14,7 @@ import requests
 def getWeatherAlerts():
     nwsEndpoint ="https://api.weather.gov/alerts"
     res = requests.get(nwsEndpoint)
-    return res.json()
+    return res
 
 
 

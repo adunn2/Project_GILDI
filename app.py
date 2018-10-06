@@ -47,8 +47,11 @@ def locateMe():
 
 @app.route("/alerts")
 def alertMe():
-    response = getWeatherAlerts()
-    return render_template('alerts.html', response=response )
+    res = getWeatherAlerts()
+    if res.status_code == requests.codes.ok:
+        return render_template('alerts.html', response=res )
+    else:
+        return render_template('error.html', response_code=res.status_code )
 
 
 if __name__ == '__main__':
