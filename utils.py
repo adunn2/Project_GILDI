@@ -13,12 +13,13 @@ import requests
 
 def getWeatherAlerts():
     nwsEndpoint ="https://api.weather.gov/alerts"
-    return requests.get(nwsEndpoint)
+    response = json.loads(requests.get(nwsEndpoint))
+    return response
 
 
 
 # endpoint = "https://maps.googleapis.com/maps/api/directions/json?"
-# 
+#
 #
 # api_key = ""
 
