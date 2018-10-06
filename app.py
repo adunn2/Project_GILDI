@@ -22,7 +22,7 @@ app = create_app()
 app.secret_key = os.environ['APP_SECRET_KEY']
 google_api_key = os.environ['GOOGLE_API_KEY']
 
-@app.route("/", methods=('GET', 'POST'))
+@app.route("/")
 def home():
     return render_template('index.html')
 
@@ -36,7 +36,7 @@ def signup():
         return redirect(url_for('success'))
     return render_template('signup.html', form=form)
 
-@app.route("/success", methods=['GET', 'POST'])
+@app.route("/success")
 def success():
     message = "Thank you!"
     return render_template('message.html', message=message)
@@ -49,7 +49,9 @@ def locateMe():
 def alertMe():
     res = getWeatherAlerts()
     if res.status_code == requests.codes.ok:
-        return render_template('alerts.html', response=res )
+        res = res.json()
+        features = res['features']
+        return render_template('alerts.html', response=features )
     else:
         return render_template('error.html', response_code=res.status_code )
 
