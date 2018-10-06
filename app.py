@@ -54,7 +54,10 @@ def alertMe():
         return render_template('alerts.html', response=features )
     else:
         return render_template('error.html', response_code=res.status_code )
-
+        
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5090, debug=True)
