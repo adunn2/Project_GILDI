@@ -21,8 +21,11 @@ app = create_app()
 app.secret_key = os.environ['APP_SECRET_KEY']
 google_api_key = os.environ['GOOGLE_API_KEY']
 
+@app.route("/")
+def home():
+    return render_template('index.html')
 
-@app.route("/", methods=('GET', 'POST'))
+@app.route("/signup", methods=('GET', 'POST'))
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
