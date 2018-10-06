@@ -37,7 +37,8 @@ def signup():
 
 @app.route("/success")
 def success():
-    return "Thank you for signing up!"
+    message = "Thank you!"
+    return render_template('message.html', message=message)
 
 @app.route("/map")
 def locateMe():
