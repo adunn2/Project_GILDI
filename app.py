@@ -32,7 +32,7 @@ def signup():
         signup = Signups(name=form.name.data, email=form.email.data, date_signed_up=datetime.datetime.now())
         db_session.add(signup)
         db_session.commit()
-        return redirect_back('success')
+        return redirect(url_for('success'))
     return render_template('signup.html', form=form)
 
 @app.route("/success")
