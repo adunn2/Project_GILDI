@@ -21,15 +21,6 @@ app = create_app()
 app.secret_key = os.environ['APP_SECRET_KEY']
 google_api_key = os.environ['GOOGLE_API_KEY']
 
-@app.route("/geo")
-def locateMe():
-    return render_template('index.html', google_api_key=google_api_key )
-
-@app.route("/alerts")
-def alertMe():
-    response = getWeatherAlerts()
-    return render_template('alerts.html', response=response )
-
 
 @app.route("/", methods=('GET', 'POST'))
 def signup():
@@ -44,6 +35,15 @@ def signup():
 @app.route("/success")
 def success():
     return "Thank you for signing up!"
+
+@app.route("/map")
+def locateMe():
+    return render_template('map.html', google_api_key=google_api_key )
+
+@app.route("/alerts")
+def alertMe():
+    response = getWeatherAlerts()
+    return render_template('alerts.html', response=response )
 
 
 if __name__ == '__main__':
