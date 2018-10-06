@@ -35,7 +35,7 @@ def signup():
         return redirect_back('success')
     return render_template('signup.html', form=form)
 
-@app.route("/signup/success")
+@app.route("/success")
 def success():
     message = "Thank you!"
     return render_template('message.html', message=message)
