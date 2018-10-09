@@ -12,7 +12,7 @@ import requests
 #s = requests.get('https://api.nationalflooddata.com/data',headers=headers,params=payload)
 
 def getWeatherAlerts():
-    nwsEndpoint ="https://api.weather.gov/alerts/active"
+    nwsEndpoint ="https://api.weather.gov/alerts/active?limit=10"
     res = requests.get(nwsEndpoint)
     return res
 
