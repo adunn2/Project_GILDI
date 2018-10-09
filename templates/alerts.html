@@ -12,6 +12,8 @@
    This will keep scripts at the page end and a navbar you add on later
    intact. #}
 {% block content %}
+
+
   <div class="container">
   {%- with messages = get_flashed_messages(with_categories=True) %}
   {%- if messages %}
@@ -34,13 +36,21 @@
     </div>
     <h1>Active Weather alerts!</h1>
     <div class="container">
-      <h1>Pick one</h1>
+
       {% for info in response %}
-      <h1>{{ info.id }}</h1>
-      <p>{{ info.properties.headline }}</p>
-      <p>{{ info.properties.severity }}</p>
-      <p>{{ info.properties.description }}</p> -->
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{ info.properties.headline }}</h2>
+        <p class="blog-post-meta">{{ info.id }} <a href="#">test</a></p>
+        <h3>{{ info.properties.severity }}</h3>
+        <p>{{ info.properties.description }}</p> -->
+      </div><!-- /.blog-post -->
       {% endfor %}
+
+      <nav class="blog-pagination">
+        <a class="btn btn-outline-primary" href="#">Older</a>
+        <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+      </nav>
+
     </div>
 
    </div>
