@@ -36,14 +36,14 @@
     <div class="container">
       <h1>Pick one</h1>
       {% for info in response %}
-      <h1>{{ info.key }}</h1>
-      <!-- <h1>{{ info.headline }}</h1>
+      <!-- <h1>{{ info.key }}</h1> -->
+      <h1>{{ info.headline }}</h1>
       <p>{{ info.effective }}</p>
       <p>{{ info.expires }}</p>
       <p>{{ info.severity }}</p>
-      <p>{{ info.description }}</p> -->
+      <p>{{ info.description }}</p>
 
-      <p>{{info}}</p>
+      <!-- <p>{{info}}</p> -->
 
       {% endfor %}
     </div>
