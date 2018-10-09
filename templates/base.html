@@ -83,8 +83,8 @@
       <div class="row">
 
         <div class="col-sm-8 blog-main">
-
-
+{% block content %}
+{% endblock %}
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 offset-sm-1 blog-sidebar">
@@ -122,14 +122,14 @@
       </div><!-- /.row -->
 
     </div><!-- /.container -->
-
+{% block footer %}
     <footer class="blog-footer">
       <p>template built for <a href="https://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
       <p>
         <a href="#">Back to top</a>
       </p>
     </footer>
-
+{% endblock %}
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -140,5 +140,6 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
   </body>
 </html>
