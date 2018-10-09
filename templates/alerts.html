@@ -37,10 +37,9 @@
       <h1>Pick one</h1>
       {% for info in response %}
       <h1>{{ info.id }}</h1>
-      <!-- <p>{{ info.effective }}</p>
-      <p>{{ info.expires }}</p>
-      <p>{{ info.severity }}</p>
-      <p>{{ info.description }}</p> -->
+      <p>{{ info.properties.headline }}</p>
+      <p>{{ info.properties.severity }}</p>
+      <p>{{ info.properties.description }}</p> -->
       {% endfor %}
     </div>
 

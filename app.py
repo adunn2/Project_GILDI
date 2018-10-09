@@ -55,7 +55,6 @@ def alertMe():
     if res.status_code == requests.codes.ok:
         res = res.json()
         features = res['features']
-        print(features)
         return render_template('alerts.html', response=features )
     else:
         return render_template('error.html', response_code=res.status_code )
