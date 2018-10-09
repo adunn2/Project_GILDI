@@ -35,12 +35,15 @@
     <h1>Active Weather alerts!</h1>
     <div class="container">
       <h1>Pick one</h1>
-      {% for feature in response %}
-      <h1>{{feature.headline}}</h1>
-      <p>{{feature.effective}}</p>
-      <p>{{feature.expires}}</p>
-      <p>{{feature.severity}}</p>
-      <p>{{feature.description}}</p>
+      {% for info in response %}
+      <h1>{{info.key}}</h1>
+      <h1>{{info.headline}}</h1>
+      <p>{{info.effective}}</p>
+      <p>{{info.expires}}</p>
+      <p>{{info.severity}}</p>
+      <p>{{info.description}}</p>
+
+      <!-- <p>{{info}}</p> -->
 
       {% endfor %}
     </div>
