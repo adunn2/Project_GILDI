@@ -28,14 +28,6 @@ google_api_key = os.environ['GOOGLE_API_KEY']
 def index():
     return render_template('index.html')
 
-@app.route("/base")
-def base():
-    return render_template('base.html')
-
-@app.route("/index2")
-def index2():
-    return render_template('index2.html')
-
 @app.route("/signup", methods=('GET', 'POST'))
 def signup():
     form = SignupForm()

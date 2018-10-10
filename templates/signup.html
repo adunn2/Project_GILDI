@@ -23,14 +23,6 @@
   {%- endif %}
   {%- endwith %}
     <div class="jumbotron">
-      <h1>Welcome to Flask-Bootstrap</h1>
-      <p>This example application demonstrates some (but not all!) of the
-      features of <a href="http://pythonhosted.org/Flask-Bootstrap">
-      Flask-Bootstrap</a>.</p>
-      <p>
-        <a class="btn btn-lg btn-default" role="button"
-           href="http://pythonhosted.org/Flask-Bootstrap" >Show docs</a>
-      </p>
       <h1> Hello, please sign up! </h1>
       <form method="POST" action="/">
           {{ form.csrf_token }}
@@ -38,13 +30,4 @@
           {{ form.email.label }} {{ form.email(size=20) }}
           <input type="submit" value="Go">
       </form>
-    </div>
-    <p><a class="btn btn-primary btn-lg" href="map">map</a>
-    <p><a class="btn btn-primary btn-lg" href="alerts">Weather Alerts</a>
-    <p><a class="btn btn-primary btn-lg" href="signup">Signup</a>
-
-   </div>
 {%- endblock %}
-
-
-</html
