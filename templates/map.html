@@ -11,11 +11,8 @@
 {# Inside the ``content`` is where you should place most of your own stuff.
    This will keep scripts at the page end and a navbar you add on later
    intact. #}
-{% block head %}
-<head>
-  <title>Geolocation</title>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-  <meta charset="utf-8">
+{% block styles -%}
+{{super()}}
   <style>
     /* Always set the map height explicitly to define the size of the div
      * element that contains the map. */
@@ -30,8 +27,7 @@
     }
   </style>
 </head>
-
-{% endblock %}
+{%- endblock %}
 
 {% block content %}
 <div id="map"></div>
