@@ -22,7 +22,7 @@ app = create_app()
 app.secret_key = os.environ['APP_SECRET_KEY']
 google_api_key = os.environ['GOOGLE_API_KEY']
 
-@app.route("/index")
+@app.route("/")
 def index():
     return render_template('index.html')
 
@@ -30,7 +30,7 @@ def index():
 def index2():
     return render_template('index2.html')
 
-@app.route("/", methods=('GET', 'POST'))
+@app.route("/signup", methods=('GET', 'POST'))
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
