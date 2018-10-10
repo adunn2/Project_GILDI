@@ -22,19 +22,7 @@
    ``super()`` is used: #}
 {% block head %}
 {{super()}}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Template for Bootstrap</title>
-
-  </head>
-
+    <link rel="icon" href="{{url_for('static', filename='img/favicon.ico')}}">
 
 {#- Docs: http://pythonhosted.org/Flask-Bootstrap/macros.html#fixes
    The sample application already contains the required static files. #}
