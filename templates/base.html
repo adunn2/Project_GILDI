@@ -78,16 +78,18 @@
 
 
 {%- block content %}
-{{super()}}
-{%- block footer %}
-<footer>
-  &copy; 2016 Awesome, Inc.
-  <p>GILDI <a href="https://github.com/adunn2/Project_GILDI">Project_GILDI</a> by <a href="https://github.com/adunn2">@adunn2</a>.</p>
-  <p>
-    <a href="/">Back to top</a>
-  </p>
-</footer>
-{%- endblock footer %}
-{%- endblock content %}
+{% endblock -%}
   </body>
+  
+  {%- block footer %}
+  {{super()}}
+  <footer>
+    &copy; 2016 Awesome, Inc.
+    <p>GILDI <a href="https://github.com/adunn2/Project_GILDI">Project_GILDI</a> by <a href="https://github.com/adunn2">@adunn2</a>.</p>
+    <p>
+      <a href="/">Back to top</a>
+    </p>
+  </footer>
+  {%- endblock %}
+
 </html>
