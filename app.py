@@ -29,7 +29,7 @@ def index():
     return render_template('index.html')
 
 @app.route("/base")
-def index():
+def base():
     return render_template('base.html')
 
 @app.route("/index2")
