@@ -52,7 +52,6 @@ def noaaWeatherData():
         payload['locationid'] = "ZIP:" + form.zipCode.data
         payload['startdate'] = form.startDate.data
         payload['enddate'] = form.endDate.data
-        print(payload)
     #     weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:21113', startdate='2010-05-01', enddate='2010-05-02', limit=1000)
     weather_data = data.fetch_data(**payload)
 
