@@ -4,7 +4,7 @@ import json
 import requests
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
-from forms import SignupForm
+from forms import SignupForm, noaaDataForm
 from models import Signups
 from database import db_session
 from utils import *
@@ -31,22 +31,27 @@ def index():
     return render_template('index.html')
 
 # https://github.com/crvaden/NOAA_API_v2
-@app.route("/noaaCategories")
+@app.route("/noaaCategories", methods=('GET', 'POST'))
 def noaaCategories():
     data = NOAAData(noaa_api_key)
-
+    # form = noaaDataForm()
+    # if form.validate_on_submit():
+    #     weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:' + form.zipCode.data, startdate=form.startDate.data, enddate=form.endDate.data, limit=1000)
+    # else:
     categories = data.data_categories(locationid='FIPS:37', sortfield='name')
     for i in categories:
         print(i)
     return render_template('noaa.html', noaaData=categories)
 
-@app.route("/noaaWeatherData")
+@app.route("/noaaWeatherData", methods=('GET', 'POST'))
 def noaaWeatherData():
     data = NOAAData(noaa_api_key)
-    weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:21113', startdate='2010-05-01', enddate='2010-05-02', limit=1000)
-    # weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:28801', startdate='2010-05-01', enddate='2010-05-02', limit=1000
-    for i in weather_data:
-        print(i)
+    form = noaaDataForm()
+    if form.validate_on_submit():
+        weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:' + form.zipCode.data, startdate=form.startDate.data, enddate=form.endDate.data, limit=1000)
+    else:
+        weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:21113', startdate='2010-05-01', enddate='2010-05-02', limit=1000)
+
     return render_template('noaa.html', noaaData=weather_data)
 
 

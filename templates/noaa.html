@@ -26,12 +26,22 @@
   {%- endwith %}
     <h1>NOAA Data Page</h1>
     <div class="container">
-
+        <div class="jumbotron">
+      <h3> Query Fields </h3>
+      <form method="POST" action="/">
+          {{ form.csrf_token }}
+          {{ form.zipCode.label }} {{ form.zipCode(size=20) }}
+          {{ form.startDate.label }} {{ form.startDate(size=20) }}
+          {{ form.endDate.label }} {{ form.endDate(size=20) }}
+          <input type="submit" value="Go">
+      </form>
+    {% if noaaData %}
       {% for info in noaaData %}
       <div class="blog-post">
         <p>{{ info }}</p>
       </div>
       {% endfor %}
+            {% endif %}
 
       <nav class="blog-pagination">
         <a class="btn btn-outline-primary" href="#">Older</a>
