@@ -32,7 +32,7 @@ def index():
 
 # https://github.com/crvaden/NOAA_API_v2
 @app.route("/noaa")
-def index():
+def noaa():
     data = NOAAData(noaa_api_key)
 
     categories = data.data_categories(locationid='FIPS:37', sortfield='name')
