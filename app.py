@@ -8,6 +8,7 @@ from forms import SignupForm
 from models import Signups
 from database import db_session
 from utils import *
+from noaaApi import NOAAData
 
 
 def create_app():
@@ -21,12 +22,25 @@ app = create_app()
 
 app.secret_key = os.environ['APP_SECRET_KEY']
 google_api_key = os.environ['GOOGLE_API_KEY']
+noaa_api_key = os.environ['NOAA_API_KEY']
 
 
 
 @app.route("/")
 def index():
     return render_template('index.html')
+
+# https://github.com/crvaden/NOAA_API_v2
+@app.route("/noaa")
+def index():
+    data = NOAAData(noaa_api_key)
+
+    categories = data.data_categories(locationid='FIPS:37', sortfield='name')
+
+    # for i in categories:
+    #     print(i)
+    return render_template('noaa.html', categories=categories)
+
 
 @app.route("/signup", methods=('GET', 'POST'))
 def signup():

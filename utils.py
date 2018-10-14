@@ -2,6 +2,23 @@ import urllib.request
 import json
 import requests
 
+
+# This makes a simple request to the National weather service to get the first 10 active weather alerts.
+def getWeatherAlerts():
+    nwsEndpoint ="https://api.weather.gov/alerts/active?limit=10"
+    res = requests.get(nwsEndpoint)
+    return res
+
+
+# def getWeatherAlerts():
+#     nwsEndpoint ="https://api.weather.gov/alerts/active?limit=10"
+#     res = requests.get(nwsEndpoint)
+#     return res
+
+
+
+
+
 #headers = {'x-api-key':'your_key'}
 #payload = {
 #    'lat':34.071783,
@@ -10,12 +27,6 @@ import requests
 #    'getloma':'False'
 #    }
 #s = requests.get('https://api.nationalflooddata.com/data',headers=headers,params=payload)
-
-def getWeatherAlerts():
-    nwsEndpoint ="https://api.weather.gov/alerts/active?limit=10"
-    res = requests.get(nwsEndpoint)
-    return res
-
 
 
 # endpoint = "https://maps.googleapis.com/maps/api/directions/json?"
