@@ -36,9 +36,8 @@ def noaa():
     data = NOAAData(noaa_api_key)
 
     categories = data.data_categories(locationid='FIPS:37', sortfield='name')
-
-    # for i in categories:
-    #     print(i)
+    for i in categories:
+        print(i)
     return render_template('noaa.html', categories=categories)
 
 
