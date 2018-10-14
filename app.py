@@ -49,7 +49,7 @@ def noaaWeatherData():
     form = noaaDataForm()
     payload = dict(datasetid='GHCND', locationid='ZIP:21113', startdate='2010-05-01', enddate='2010-05-02', limit=1000)
     if form.validate_on_submit():
-        payload['locationid'] = form.zipCode.data
+        payload['locationid'] = "ZIP:" + form.zipCode.data
         payload['startdate'] = form.startDate.data
         payload['enddate'] = form.endDate.data
         print(payload)
