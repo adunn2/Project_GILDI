@@ -7,7 +7,7 @@ class SignupForm(FlaskForm):
     email = StringField('email', validators=[DataRequired()])
 
 class noaaDataForm(FlaskForm):
-    # dataSet = StringField('setName', validators=[DataRequired()])
     zipCode = StringField('zipCode', validators=[DataRequired()])
     startDate = StringField('startDate', validators=[DataRequired()])
     endDate = StringField('endDate', validators=[DataRequired()])
+    # dataSet = StringField('setName', validators=[DataRequired()])

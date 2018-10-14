@@ -24,7 +24,7 @@
   {%- endwith %}
     <div class="jumbotron">
       <h1> Hello, please sign up! </h1>
-      <form method="POST" action="/">
+      <form method="POST" action="/signup">
           {{ form.csrf_token }}
           {{ form.name.label }} {{ form.name(size=20) }}
           {{ form.email.label }} {{ form.email(size=20) }}

@@ -26,9 +26,9 @@
   {%- endwith %}
     <h1>NOAA Data Page</h1>
     <div class="container">
-        <div class="jumbotron">
+        <div>
       <h3> Query Fields </h3>
-      <form method="POST" action="/">
+      <form method="POST" action="/noaaWeatherData">
           {{ form.csrf_token }}
           {{ form.zipCode.label }} {{ form.zipCode(size=20) }}
           {{ form.startDate.label }} {{ form.startDate(size=20) }}
