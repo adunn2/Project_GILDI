@@ -47,7 +47,7 @@ def noaaCategories():
 def noaaWeatherData():
     data = NOAAData(noaa_api_key)
     form = noaaDataForm()
-    payload = {'datasetid':'GHCND', 'locationid':'ZIP:21113', 'startdate':'2010-05-01', 'enddate':'2010-05-02', 'limit':1000}
+    payload = dict(datasetid='GHCND', locationid='ZIP:21113', startdate='2010-05-01', enddate='2010-05-02', limit=1000)
     if form.validate_on_submit():
         location = "ZIP:" + form.zipCode.data
         print(location + "  " + form.startDate.data + "  " + form.endDate.data)
