@@ -34,14 +34,14 @@ def index():
 @app.route("/noaaCategories", methods=('GET', 'POST'))
 def noaaCategories():
     data = NOAAData(noaa_api_key)
-    # form = noaaDataForm()
+    form = noaaDataForm()
     # if form.validate_on_submit():
     #     weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:' + form.zipCode.data, startdate=form.startDate.data, enddate=form.endDate.data, limit=1000)
     # else:
     categories = data.data_categories(locationid='FIPS:37', sortfield='name')
     for i in categories:
         print(i)
-    return render_template('noaa.html', noaaData=categories)
+    return render_template('noaa.html', form=form, noaaData=categories)
 
 @app.route("/noaaWeatherData", methods=('GET', 'POST'))
 def noaaWeatherData():
@@ -52,7 +52,7 @@ def noaaWeatherData():
     else:
         weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:21113', startdate='2010-05-01', enddate='2010-05-02', limit=1000)
 
-    return render_template('noaa.html', noaaData=weather_data)
+    return render_template('noaa.html', form=form, noaaData=weather_data)
 
 
 
