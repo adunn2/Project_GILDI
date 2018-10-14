@@ -51,7 +51,7 @@ def noaaWeatherData():
     if form.validate_on_submit():
         location = "ZIP:" + form.zipCode.data
         print(location + "  " + form.startDate.data + "  " + form.endDate.data)
-        weather_data = data.fetch_data(payload=payload)
+        weather_data = data.fetch_data(**payload)
         # weather_data = data.fetch_data(datasetid='GHCND', locationid=location, startdate='2015-05-01', enddate='2018-05-02', limit=1000)
     else:
         weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:21113', startdate='2010-05-01', enddate='2010-05-02', limit=1000)
