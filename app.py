@@ -31,14 +31,24 @@ def index():
     return render_template('index.html')
 
 # https://github.com/crvaden/NOAA_API_v2
-@app.route("/noaa")
-def noaa():
+@app.route("/noaaCategories")
+def noaaCategories():
     data = NOAAData(noaa_api_key)
 
     categories = data.data_categories(locationid='FIPS:37', sortfield='name')
     for i in categories:
         print(i)
-    return render_template('noaa.html', categories=categories)
+    return render_template('noaa.html', noaaData=categories)
+
+@app.route("/noaaWeatherData")
+def noaaWeatherData():
+    data = NOAAData(noaa_api_key)
+    weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:21113', startdate='2010-05-01', enddate='2010-05-02', limit=1000)
+    # weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:28801', startdate='2010-05-01', enddate='2010-05-02', limit=1000
+    for i in weather_data:
+        print(i)
+    return render_template('noaa.html', noaaData=weather_data)
+
 
 
 @app.route("/signup", methods=('GET', 'POST'))
