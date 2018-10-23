@@ -28,7 +28,7 @@ noaa_api_key = os.environ['NOAA_API_KEY']
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('index.html', google_api_key=google_api_key )
 
 # https://github.com/crvaden/NOAA_API_v2
 @app.route("/noaaCategories", methods=('GET', 'POST'))
