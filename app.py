@@ -9,6 +9,7 @@ from models import Signups
 from database import db_session
 from utils import *
 from noaaApi import NOAAData
+from google import *
 
 
 def create_app():
@@ -29,6 +30,17 @@ noaa_api_key = os.environ['NOAA_API_KEY']
 @app.route("/")
 def index():
     return render_template('index.html', google_api_key=google_api_key )
+
+@app.route("/geoData", methods=('GET', 'POST'))
+def getGeo():
+    googleData = getGeoCode(google_api_key)
+    return render_template('google.html', googleData=googleData)
+
+@app.route("/elev", methods=('GET', 'POST'))
+def getElev():
+    googleData = getElevation(google_api_key)
+    return render_template('google.html', googleData=googleData)
+
 
 # https://github.com/crvaden/NOAA_API_v2
 @app.route("/noaaCategories", methods=('GET', 'POST'))
