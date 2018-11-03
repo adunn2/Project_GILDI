@@ -21,9 +21,16 @@ def create_app():
 # app = Flask(__name__)
 app = create_app()
 
+fileName = "api_credentials.json"
+
+credentials = loadCreds(fileName)
+print(credentials)
+
+
 app.secret_key = os.environ['APP_SECRET_KEY']
 google_api_key = os.environ['GOOGLE_API_KEY']
 noaa_api_key = os.environ['NOAA_API_KEY']
+
 
 
 
