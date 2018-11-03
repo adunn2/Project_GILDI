@@ -8,8 +8,8 @@ def loadCreds(fileName = "api_credentials.json"):
     try:
         with open(fileName, "w") as apiFile:
             return json.load(apiFile)
-    except as e:
-        print(e)
+    except:
+        print("File load error")
 
 # This makes a simple request to the National weather service to get the first 10 active weather alerts.
 def getWeatherAlerts():
