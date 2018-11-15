@@ -17,6 +17,12 @@ def getWeatherAlerts():
     res = requests.get(nwsEndpoint)
     return res
 
+# This makes a simple request to the National weather service to get the first 10 active weather alerts.
+def getLocalWeatherAlerts():
+    nwsEndpoint ="https://api.weather.gov/alerts/active/area/MD?limit=10"
+    res = requests.get(nwsEndpoint)
+    return res
+
 
 # def getWeatherAlerts():
 #     nwsEndpoint ="https://api.weather.gov/alerts/active?limit=10"

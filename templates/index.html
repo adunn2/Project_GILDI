@@ -135,6 +135,29 @@ function setLevels() {
             <button onclick="changeOpacity()">Change opacity</button>
           </div>
   </div>
+
+  <h2>Active Weather alerts!</h2>
+  <div class="container">
+
+    {% for info in response %}
+    <div class="blog-post">
+      <h2 class="blog-post-title">{{ info.properties.headline }}</h2>
+      <p class="blog-post-meta">{{ info.id }} <a href="#">test</a></p>
+      <h3>{{ info.properties.severity }}</h3>
+      <p>{{ info.properties.description }}</p> -->
+    </div><!-- /.blog-post -->
+    {% endfor %}
+
+    <nav class="blog-pagination">
+      <a class="btn btn-outline-primary" href="#">Older</a>
+      <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+    </nav>
+
+  </div>
+
+ </div>
+
+
       </div>
 
 <script>
