@@ -3,9 +3,23 @@ import json
 import requests
 
 
+# This loads a json file with credentials for services
+def loadCreds(fileName = "api_credentials.json"):
+    try:
+        with open(fileName) as apiFile:
+            return json.load(apiFile)
+    except Exception as e:
+        print("File load error\n", e)
+
 # This makes a simple request to the National weather service to get the first 10 active weather alerts.
 def getWeatherAlerts():
     nwsEndpoint ="https://api.weather.gov/alerts/active?limit=10"
+    res = requests.get(nwsEndpoint)
+    return res
+
+# This makes a simple request to the National weather service to get the first 10 active weather alerts.
+def getLocalWeatherAlerts():
+    nwsEndpoint ="https://api.weather.gov/alerts/active/area/MD"
     res = requests.get(nwsEndpoint)
     return res
 

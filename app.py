@@ -21,15 +21,32 @@ def create_app():
 # app = Flask(__name__)
 app = create_app()
 
+fileName = "api_credentials.json"
+
+credentials = loadCreds(fileName)
+print(credentials)
+
+
 app.secret_key = os.environ['APP_SECRET_KEY']
 google_api_key = os.environ['GOOGLE_API_KEY']
 noaa_api_key = os.environ['NOAA_API_KEY']
 
 
 
+
 @app.route("/")
 def index():
     return render_template('index.html', google_api_key=google_api_key )
+    # res = getLocalWeatherAlerts()
+    # if res.status_code == requests.codes.ok:
+    #     res = res.json()
+    #     features = res['features']
+    #     return render_template('index.html', response=features, google_api_key=google_api_key )
+    # else:
+    #     # return render_template('index.html', response=features, google_api_key=google_api_key )
+    #     return render_template('error.html', response_code=res.status_code )
+
+
 
 @app.route("/geoData", methods=('GET', 'POST'))
 def getGeo():
