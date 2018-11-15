@@ -36,15 +36,15 @@ noaa_api_key = os.environ['NOAA_API_KEY']
 
 @app.route("/")
 def index():
-    def getLocalInfo():
-        res = getLocalWeatherAlerts()
-        if res.status_code == requests.codes.ok:
-            res = res.json()
-            features = res['features']
-            return render_template('index.html', response=features, google_api_key=google_api_key )
-        else:
-            # return render_template('index.html', response=features, google_api_key=google_api_key )
-            return render_template('error.html', response_code=res.status_code )
+    return render_template('index.html', google_api_key=google_api_key )
+    # res = getLocalWeatherAlerts()
+    # if res.status_code == requests.codes.ok:
+    #     res = res.json()
+    #     features = res['features']
+    #     return render_template('index.html', response=features, google_api_key=google_api_key )
+    # else:
+    #     # return render_template('index.html', response=features, google_api_key=google_api_key )
+    #     return render_template('error.html', response_code=res.status_code )
 
 
 

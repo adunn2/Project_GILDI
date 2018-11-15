@@ -136,17 +136,31 @@ function setLevels() {
           </div>
   </div>
 
+  <script>
+  function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("ajaxDemo").innerHTML =
+        this.responseText;
+      }
+    };
+    xhttp.open("GET", "https://api.weather.gov/alerts/active/area/MD", true);
+    xhttp.send();
+  }
+  </script>
+
+
   <h2>Active Weather alerts!</h2>
   <div class="container">
+    <button type="button" onclick="loadDoc()">Change Content</button>
+    <div class="blog-post" id="localAlerts">
 
-    {% for info in response %}
-    <div class="blog-post">
-      <h2 class="blog-post-title">{{ info.properties.headline }}</h2>
-      <p class="blog-post-meta">{{ info.id }} <a href="#">test</a></p>
-      <h3>{{ info.properties.severity }}</h3>
-      <p>{{ info.properties.description }}</p> -->
+        <p id="ajaxDemo">Let AJAX change this text.</p>
+
+
     </div><!-- /.blog-post -->
-    {% endfor %}
+
 
     <nav class="blog-pagination">
       <a class="btn btn-outline-primary" href="#">Older</a>
