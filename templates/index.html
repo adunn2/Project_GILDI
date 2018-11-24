@@ -54,12 +54,12 @@
 
 {% block content %}
 <script>
-
-function setLevels() {
   var threat = 5;
   var low = "0%";
   var moderate = "60%";
   var danger = "40%";
+
+function setLevels() {
 
   switch (threat) {
     case 0:
@@ -106,10 +106,14 @@ function setLevels() {
   highBar.setAttribute("style", "width:0%");
   lowBar.setAttribute("class", "progress-bar progress-bar-striped active");
 
-  window.setTimeout(updateBar(low, moderate, danger, lowBar, moderateBar, highBar), 2000);
-
+// Just using a simple timeout to test the progress bar settings.
+  setTimeout(updateBar, 4000);
 }
-function updateBar(low, moderate, danger, lowBar, moderateBar, highBar){
+
+function updateBar(){
+  lowBar = document.getElementById('lowThreat');
+  moderateBar = document.getElementById('moderateThreat');
+  highBar = document.getElementById('highThreat');
   lowBar.setAttribute("class", "progress-bar progress-bar-success");
   lowBar.setAttribute("style", "width:" + low);
   moderateBar.setAttribute("style", "width:" + moderate);
