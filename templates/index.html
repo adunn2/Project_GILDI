@@ -97,9 +97,20 @@ function setLevels() {
         moderate = "30%";
         danger = "30%";
 }
+
   lowBar = document.getElementById('lowThreat');
   moderateBar = document.getElementById('moderateThreat');
   highBar = document.getElementById('highThreat');
+  lowBar.setAttribute("style", "width:100%");
+  moderateBar.setAttribute("style", "width:0%");
+  highBar.setAttribute("style", "width:0%");
+  lowBar.setAttribute("class", "progress-bar progress-bar-striped active");
+
+  window.setTimeout(updateBar(low, moderate, danger, lowBar, moderateBar, highBar), 2000);
+
+}
+function updateBar(low, moderate, danger, lowBar, moderateBar, highBar){
+  lowBar.setAttribute("class", "progress-bar progress-bar-success");
   lowBar.setAttribute("style", "width:" + low);
   moderateBar.setAttribute("style", "width:" + moderate);
   highBar.setAttribute("style", "width:" + danger);
@@ -143,7 +154,7 @@ function setLevels() {
 
 <div class="container">
   <!-- <h2>Weather Threat Level</h2> -->
-  <p>Weather Threat Level</p>
+  <!-- <p>Weather Threat Level</p> -->
   <div class="progress">
     <div class="progress-bar progress-bar-success" id="lowThreat" role="progressbar" style="width:40%">
       Low Danger
@@ -155,7 +166,7 @@ function setLevels() {
       Danger
     </div>
   </div>
-  <button type="button" class="btn btn-primary btn-md" onclick="setLevels()">Threat Meter</button>
+  <button type="button" class="btn btn-primary btn-block" onclick="setLevels()">Click to Get Safety Score</button>
 </div>
 
 
@@ -173,9 +184,9 @@ function setLevels() {
   </div>
 
 
-<div>  <h4>Active Weather alerts!</h4>
+<div>  <h3 class="text-center">Active Weather alerts!</h3>
   <div class="container">
-    <button type="button" class="btn btn-primary btn-md" id="getLocalEvents">Weather Events</button>
+    <button type="button" class="btn btn-primary btn-block" id="getLocalEvents">Weather Events</button>
 
     <div class="blog-post" id="localAlerts">
       </div><!-- /.blog-post -->
@@ -299,7 +310,7 @@ var state = "NY";
             console.log(geoResponse.results[0].address_components[5]);
             state = geoResponse.results[0].address_components[5].short_name;
             document.getElementById("getLocalEvents").innerHTML =
-            "Events:" + geoResponse.results[0].address_components[5].short_name;
+            "Click for Events in: " + geoResponse.results[0].address_components[5].short_name;
        }
     };
     var latlng = lat + "," + lng;
