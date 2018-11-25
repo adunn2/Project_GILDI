@@ -1,0 +1,7 @@
+requests
+flask-bootstrap
+Flask
+psycopg2
+SQLAlchemy
+Flask-WTF
+googlemaps

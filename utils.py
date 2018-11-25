@@ -11,6 +11,14 @@ def loadCreds(fileName = "api_credentials.json"):
     except Exception as e:
         print("File load error\n", e)
 
+
+# This makes a simple request to the National weather service to get the first 10 active weather alerts.
+def runDataApp():
+    dataEndpoint ="http://projectgildi_flaskdataapp_1:5091"
+    res = requests.get(dataEndpoint)
+    return res
+
+
 # This makes a simple request to the National weather service to get the first 10 active weather alerts.
 def getWeatherAlerts():
     nwsEndpoint ="https://api.weather.gov/alerts/active?limit=10"

@@ -19,6 +19,17 @@ services:
       - web_nw
     depends_on:
       - db
+  flaskdataapp:
+    build: ./dataApp
+    env_file:
+      - env_file
+    volumes:
+      - ./dataApp:/opt/services/flaskdataapp/src
+    networks:
+      - db_nw
+      - web_nw
+    depends_on:
+      - db
   nginx:
     image: "nginx:1.13.5"
     ports:
