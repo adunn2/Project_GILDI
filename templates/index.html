@@ -105,7 +105,7 @@ function setLevels() {
   moderateBar.setAttribute("style", "width:0%");
   highBar.setAttribute("style", "width:0%");
   lowBar.setAttribute("class", "progress-bar progress-bar-striped active");
-
+  lowBar.innerHTML = "Loading Score";
 // Just using a simple timeout to test the progress bar settings.
   setTimeout(updateBar, 4000);
 }
@@ -115,6 +115,7 @@ function updateBar(){
   moderateBar = document.getElementById('moderateThreat');
   highBar = document.getElementById('highThreat');
   lowBar.setAttribute("class", "progress-bar progress-bar-success");
+  lowBar.innerHTML = "Low Danger";
   lowBar.setAttribute("style", "width:" + low);
   moderateBar.setAttribute("style", "width:" + moderate);
   highBar.setAttribute("style", "width:" + danger);
