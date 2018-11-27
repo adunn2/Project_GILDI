@@ -107,6 +107,7 @@ function setLevels() {
   lowBar.setAttribute("class", "progress-bar progress-bar-striped active");
   lowBar.innerHTML = "Loading Score";
 // Just using a simple timeout to test the progress bar settings.
+  runScore();
   setTimeout(updateBar, 4000);
 }
 
@@ -120,6 +121,22 @@ function updateBar(){
   moderateBar.setAttribute("style", "width:" + moderate);
   highBar.setAttribute("style", "width:" + danger);
 }
+
+function runScore() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var runResponse = JSON.parse(this.responseText);
+        console.log(runResponse);     
+//	document.getElementById("demo").innerHTML = this.responseText;
+    
+}
+  };
+  xhttp.open("GET", "/run", true);
+  xhttp.send();
+}
+
+
 </script>
 
 
@@ -181,10 +198,10 @@ function updateBar(){
         <div class="panel-heading">Current User Location</div>
         <div class="panel-body"></div>
         <div id="floating-panel">
-            <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-            <button onclick="changeGradient()">Change gradient</button>
-            <button onclick="changeRadius()">Change radius</button>
-            <button onclick="changeOpacity()">Change opacity</button>
+            <button class="btn btn-info btn-sm" onclick="toggleHeatmap()">Toggle Heatmap</button>
+            <button class="btn btn-info btn-sm" onclick="changeGradient()">Change gradient</button>
+            <button class="btn btn-info btn-sm" onclick="changeRadius()">Change radius</button>
+            <button class="btn btn-info btn-sm" onclick="changeOpacity()">Change opacity</button>
           </div>
   </div>
 
