@@ -7,3 +7,5 @@ Flask-WTF
 googlemaps
 numpy
 pandas
+scipy
+scikit-learn
