@@ -4,6 +4,7 @@ import json
 import requests
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
+from flask import jsonify
 from forms import SignupForm, noaaDataForm
 from models import Signups
 from database import db_session
@@ -112,7 +113,7 @@ def run():
     res = runDataApp()
     if res.status_code == requests.codes.ok:
         res = res.json()
-        return render_template('error.html', response_code=res )
+        return jsonify(res)
     else:
         return render_template('error.html', response_code=res.status_code )
 

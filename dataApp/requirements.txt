@@ -5,3 +5,7 @@ psycopg2
 SQLAlchemy
 Flask-WTF
 googlemaps
+numpy
+pandas
+scipy
+scikit-learn
