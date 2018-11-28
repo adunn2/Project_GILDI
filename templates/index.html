@@ -127,9 +127,9 @@ function runScore() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var runResponse = JSON.parse(this.responseText);
-        console.log(runResponse);     
-//	document.getElementById("demo").innerHTML = this.responseText;
-    
+        console.log(runResponse);
+	      document.getElementById("highThreat").innerHTML = this.responseText;
+
 }
   };
   xhttp.open("GET", "/run", true);
@@ -143,6 +143,8 @@ function runScore() {
   <script>
   $(document).ready(function(){
       $("#getLocalEvents").click(function(){
+        var state = "MD";
+        if (locationInfo.state.length === 2){sate = locationInfo.state; console.log("Set state OK");};
           $.getJSON("https://api.weather.gov/alerts/active/area/" + state, function(result){
               var features = result['features'];
               $.each(features, function(i, item){
@@ -321,24 +323,53 @@ function runScore() {
       new google.maps.LatLng((lat +  0.0012), (lng + 0.0012))
     ];
   }
-//This holds the  decoded sate the user is in for getting event data from NOAA
-var state = "NY";
+//This holds the  decoded location information the user is in for getting event data from NOAA
+var locationInfo = {
+  lat: 0,
+  lng: 0,
+  state: "",
+  country: "",
+  city: ""
+};
 
   function revGeo(lat, lng) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            var geoResponse = JSON.parse(this.responseText);
-            console.log(geoResponse.results[0].address_components[5]);
-            state = geoResponse.results[0].address_components[5].short_name;
+	    var geoResponse = JSON.parse(this.responseText);
+            getCityState(geoResponse.results);
+            console.log(locationInfo);
+            state = locationInfo.state;
             document.getElementById("getLocalEvents").innerHTML =
             "Click for Events in: " + geoResponse.results[0].address_components[5].short_name;
        }
     };
-    var latlng = lat + "," + lng;
-    xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&key={{google_api_key}}", true);
+    locationInfo.lat = lat;
+    locationInfo.lng = lng;
+    xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + locationInfo.lat + "," + locationInfo.lng + "&key={{google_api_key}}", true);
     xhttp.send();
 }
+
+function getCityState(resp){
+	    for (var ac = 0; ac < resp[0].address_components.length; ac++) {
+                                    var component = resp[0].address_components[ac];
+                                    switch(component.types[0]) {
+                                        case 'locality':
+					                                  console.log(component.long_name);
+                                            locationInfo.city = component.long_name;
+                                            break;
+                                        case 'administrative_area_level_1':
+                                            console.log(component.short_name);
+                                            locationInfo.state = component.short_name;
+                                            break;
+                                        case 'country':
+                                            console.log(component.long_name);
+                                            locationInfo.country = component.long_name;
+                                            //iso_code = component.short_name;
+                                            break;
+                                    }
+        };
+};
 
 </script>
 
