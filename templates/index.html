@@ -200,10 +200,10 @@ function runScore() {
         <div class="panel-heading">Current User Location</div>
         <div class="panel-body"></div>
         <div id="floating-panel">
-            <button class="btn btn-info btn-sm" onclick="toggleHeatmap()">Toggle Heatmap</button>
-            <button class="btn btn-info btn-sm" onclick="changeGradient()">Change gradient</button>
-            <button class="btn btn-info btn-sm" onclick="changeRadius()">Change radius</button>
-            <button class="btn btn-info btn-sm" onclick="changeOpacity()">Change opacity</button>
+            <button class="btn btn-info btn-xs" onclick="toggleHeatmap()">Toggle Heatmap</button>
+            <button class="btn btn-info btn-xs" onclick="changeGradient()">Change gradient</button>
+            <button class="btn btn-info btn-xs" onclick="changeRadius()">Change radius</button>
+            <button class="btn btn-info btn-xs" onclick="changeOpacity()">Change opacity</button>
           </div>
   </div>
 
@@ -341,7 +341,7 @@ var locationInfo = {
             console.log(locationInfo);
             state = locationInfo.state;
             document.getElementById("getLocalEvents").innerHTML =
-            "Click for Events in: " + geoResponse.results[0].address_components[5].short_name;
+            "Click for Events in: " + locationInfo.state;
        }
     };
     locationInfo.lat = lat;
