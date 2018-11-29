@@ -106,7 +106,7 @@ function setLevels() {
   highBar.setAttribute("style", "width:0%");
   lowBar.setAttribute("class", "progress-bar progress-bar-striped active");
   lowBar.innerHTML = "Loading Score";
-// Just using a simple timeout to test the progress bar settings.
+  // Just using a simple timeout to test the progress bar settings.
   runScore();
   setTimeout(updateBar, 4000);
 }
@@ -129,16 +129,12 @@ function runScore() {
         var runResponse = JSON.parse(this.responseText);
         console.log(runResponse);
 	      document.getElementById("highThreat").innerHTML = this.responseText;
-
 }
   };
   xhttp.open("GET", "/run", true);
   xhttp.send();
 }
-
-
 </script>
-
 
   <script>
   $(document).ready(function(){
@@ -147,6 +143,14 @@ function runScore() {
         if (locationInfo.state.length === 2){sate = locationInfo.state; console.log("Set state OK");};
           $.getJSON("https://api.weather.gov/alerts/active/area/" + state, function(result){
               var features = result['features'];
+              if (features.length == 0){
+                var element = document.createElement("div");
+                var node = document.createElement("p");
+                node.innerHTML = ("No Current Active alerts for your location")
+                element.appendChild(node);
+                $("#localAlerts").append(element);
+              }
+              else{
               $.each(features, function(i, item){
                   var element = document.createElement("div");
                   element.setAttribute('class', 'blog-post');
@@ -171,6 +175,7 @@ function runScore() {
                   element.appendChild(node5);
                   $("#localAlerts").append(element);
               });
+            }
           });
       });
   });
@@ -200,15 +205,14 @@ function runScore() {
         <div class="panel-heading">Current User Location</div>
         <div class="panel-body"></div>
         <div id="floating-panel">
-            <button class="btn btn-info btn-xs" onclick="toggleHeatmap()">Toggle Heatmap</button>
-            <button class="btn btn-info btn-xs" onclick="changeGradient()">Change gradient</button>
-            <button class="btn btn-info btn-xs" onclick="changeRadius()">Change radius</button>
-            <button class="btn btn-info btn-xs" onclick="changeOpacity()">Change opacity</button>
+            <button class="btn btn-info btn-xs" onclick="toggleHeatmap()">Show Heatmap</button>
+            <button class="btn btn-info btn-xs" onclick="changeGradient()">Gradient</button>
+            <button class="btn btn-info btn-xs" onclick="changeRadius()">Radius</button>
+            <button class="btn btn-info btn-xs" onclick="changeOpacity()">Opacity</button>
           </div>
   </div>
 
-
-<div>  <h3 class="text-center">Active Weather alerts!</h3>
+<div>  <h3 class="text-center">Active alerts</h3>
   <div class="container">
     <button type="button" class="btn btn-primary btn-block" id="getLocalEvents">Weather Events</button>
 

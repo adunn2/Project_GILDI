@@ -11,8 +11,10 @@ from flask import Response
 #from utils import *
 #from noaaApi import NOAAData
 #from google import *
-import pandas as pd 
+import pandas as pd
 import numpy as np
+from csvdataprocess import *
+
 
 def create_app():
   app = Flask(__name__)
@@ -36,10 +38,12 @@ noaa_api_key = os.environ['NOAA_API_KEY']
 
 @app.route("/")
 def index():
+    result = runData(state="MD")
     data = {
         'hello'  : 'world',
         'number' : 0
     }
+    data['hello'] = result
     js = json.dumps(data)
 
     resp = Response(js, status=200, mimetype='application/json')
@@ -49,7 +53,7 @@ def index():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return ("Bad reques")   
+    return ("Bad reques")
 #return render_template('404.html'), 404
 
 if __name__ == '__main__':
