@@ -117,6 +117,16 @@ def run(state):
     else:
         return render_template('error.html', response_code=res.status_code )
 
+@app.route("/getevents/<state>")
+def getEvents(state):
+    res = runGetEventLocations(state)
+    if res.status_code == requests.codes.ok:
+        res = res.json()
+        return jsonify(res)
+    else:
+        return render_template('error.html', response_code=res.status_code )
+
+
 @app.route("/alerts")
 def alertMe():
     res = getWeatherAlerts()
