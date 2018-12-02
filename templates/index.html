@@ -61,6 +61,28 @@
 
 function setLevels() {
 
+
+  lowBar = document.getElementById('lowThreat');
+  moderateBar = document.getElementById('moderateThreat');
+  highBar = document.getElementById('highThreat');
+  lowBar.setAttribute("style", "width:100%");
+  moderateBar.setAttribute("style", "width:0%");
+  highBar.setAttribute("style", "width:0%");
+  lowBar.setAttribute("class", "progress-bar progress-bar-striped active");
+  lowBar.innerHTML = "Loading Score";
+  // Just using a simple timeout to test the progress bar settings.
+  runScore();
+  setTimeout(updateBar, 3000);
+
+}
+
+function updateBar(){
+  lowBar = document.getElementById('lowThreat');
+  moderateBar = document.getElementById('moderateThreat');
+  highBar = document.getElementById('highThreat');
+  lowBar.setAttribute("class", "progress-bar progress-bar-success");
+  lowBar.innerHTML = "Low Danger";
+
   switch (threat) {
     case 0:
         low = "100%";
@@ -98,28 +120,10 @@ function setLevels() {
         danger = "30%";
 }
 
-  lowBar = document.getElementById('lowThreat');
-  moderateBar = document.getElementById('moderateThreat');
-  highBar = document.getElementById('highThreat');
-  lowBar.setAttribute("style", "width:100%");
-  moderateBar.setAttribute("style", "width:0%");
-  highBar.setAttribute("style", "width:0%");
-  lowBar.setAttribute("class", "progress-bar progress-bar-striped active");
-  lowBar.innerHTML = "Loading Score";
-  // Just using a simple timeout to test the progress bar settings.
-  runScore();
-  setTimeout(updateBar, 4000);
-}
+lowBar.setAttribute("style", "width:" + low);
+moderateBar.setAttribute("style", "width:" + moderate);
+highBar.setAttribute("style", "width:" + danger);
 
-function updateBar(){
-  lowBar = document.getElementById('lowThreat');
-  moderateBar = document.getElementById('moderateThreat');
-  highBar = document.getElementById('highThreat');
-  lowBar.setAttribute("class", "progress-bar progress-bar-success");
-  lowBar.innerHTML = "Low Danger";
-  lowBar.setAttribute("style", "width:" + low);
-  moderateBar.setAttribute("style", "width:" + moderate);
-  highBar.setAttribute("style", "width:" + danger);
 }
 
 function runScore() {
@@ -128,6 +132,7 @@ function runScore() {
     if (this.readyState == 4 && this.status == 200) {
         var runResponse = JSON.parse(this.responseText);
         console.log(runResponse);
+        threat = runResponse['number'];
 	      document.getElementById("highThreat").innerHTML = this.responseText;
 }
   };

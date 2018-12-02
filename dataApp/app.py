@@ -49,7 +49,7 @@ def index():
         'results'  : state,
         'number' : 0
     }
-    data['number'] = float(result)
+    data['number'] = int(result)
     js = json.dumps(data)
     # js = json.dumps(result)
     resp = Response(js, status=200, mimetype='application/json')
