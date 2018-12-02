@@ -145,8 +145,7 @@ def getStateRating(state):
     return dangerrate(state_ave)
 
 #return the state events with locations in a dictionary
-def getStateEvents(state):
-
+def getStateEvents(state="MARYLAND"):
     #check if we have data for the
     if state in di_data['STATE'].unique():
         return di_data.loc[di_data['STATE'] == state].to_dict()
