@@ -131,7 +131,7 @@ function runScore() {
 	      document.getElementById("highThreat").innerHTML = this.responseText;
 }
   };
-  xhttp.open("GET", "/run", true);
+  xhttp.open("GET", "/run/" + locationInfo.state, true);
   xhttp.send();
 }
 </script>

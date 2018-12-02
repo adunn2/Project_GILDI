@@ -5,6 +5,7 @@ import requests
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask import Response
+from flask import request
 #from forms import SignupForm, noaaDataForm
 #from models import Signups
 #from database import db_session
@@ -13,7 +14,8 @@ from flask import Response
 #from google import *
 import pandas as pd
 import numpy as np
-from csvdataprocess import *
+import csvdataprocess as csvData
+from datetime import datetime
 
 
 def create_app():
@@ -38,14 +40,18 @@ noaa_api_key = os.environ['NOAA_API_KEY']
 
 @app.route("/")
 def index():
-    result = runData(state="MD")
+    state = request.args.get('state')
+    print(state)
+    # result = csvData.getStateRating("MARYLAND")
+    currentMonth = datetime.now().month
+    result = csvData.getPrediction(state, currentMonth)
     data = {
-        'hello'  : 'world',
+        'results'  : state,
         'number' : 0
     }
-    data['hello'] = result
+    data['number'] = float(result)
     js = json.dumps(data)
-
+    # js = json.dumps(result)
     resp = Response(js, status=200, mimetype='application/json')
     #resp.headers['Link'] = 'http://placeholder.com'
     return resp
