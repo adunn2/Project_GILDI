@@ -37,7 +37,6 @@ app.secret_key = os.environ['APP_SECRET_KEY']
 google_api_key = os.environ['GOOGLE_API_KEY']
 noaa_api_key = os.environ['NOAA_API_KEY']
 
-
 @app.route("/")
 def index():
     state = request.args.get('state')
@@ -56,6 +55,21 @@ def index():
     #resp.headers['Link'] = 'http://placeholder.com'
     return resp
 
+@app.route("/events")
+def eventLocations():
+    state = request.args.get('state')
+    result = csvData.getStateEvents(state)
+    data = {
+        'location'  : state,
+        'results' : result
+    }
+    # data['number'] = int(result)
+    js = json.dumps(data)
+    # js = json.dumps(result)
+    resp = Response(js, status=200, mimetype='application/json')
+    #resp.headers['Link'] = 'http://placeholder.com'
+    return resp
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -63,4 +77,4 @@ def page_not_found(e):
 #return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5091, debug=True)
+    app.run(host='0.0.0.0', port=5091, debug=True, use_reloader=False)
