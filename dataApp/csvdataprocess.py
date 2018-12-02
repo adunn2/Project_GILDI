@@ -94,7 +94,9 @@ state_names={'ALABAMA':0,
 'WASHINGTON':47,
 'WEST VIRGINIA':48,
 'WISCONSIN':49,
-'WYOMING':50,}
+'WYOMING':50,
+'DISTRICT OF COLUMBIA':51,
+'PUERTO RICO':52,}
 
 #list of month names
 global months
@@ -145,10 +147,11 @@ def getStateRating(state):
     return dangerrate(state_ave)
 
 #return the state events with locations in a dictionary
-def getStateEvents(state="MARYLAND"):
+def getStateEvents(state="MD"):
+    input1 = states.index(state)
     #check if we have data for the
-    if state in di_data['STATE'].unique():
-        return di_data.loc[di_data['STATE'] == state].to_dict()
+    if input1 in di_data['STATE'].unique():
+        return di_data.loc[di_data['STATE'] == input1].to_dict()
 
     else:
         return {}
