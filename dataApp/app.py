@@ -14,7 +14,7 @@ from flask import request
 #from google import *
 import pandas as pd
 import numpy as np
-import csvdataprocess as csvData
+import dataprocess as csvData
 from datetime import datetime
 
 
@@ -40,9 +40,9 @@ noaa_api_key = os.environ['NOAA_API_KEY']
 @app.route("/")
 def index():
     state = request.args.get('state')
-    print(state)
     # result = csvData.getStateRating("MARYLAND")
     currentMonth = datetime.now().month
+    print("CURRENTMONTH: ", currentMonth)
     result = csvData.getPrediction(state, currentMonth)
     data = {
         'results'  : state,
