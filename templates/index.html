@@ -59,6 +59,12 @@
   var moderate = "60%";
   var danger = "40%";
 
+  var beginLon = 0;
+  var endLon = 0;
+  var beginLat = 0;
+  var endLat = 0;
+
+
 function setLevels() {
 
 
@@ -72,6 +78,7 @@ function setLevels() {
   lowBar.innerHTML = "Loading Score";
   // Just using a simple timeout to test the progress bar settings.
   runScore();
+  runGetLocations();
   setTimeout(updateBar, 2000);
 
 }
@@ -137,6 +144,33 @@ function runScore() {
 }
   };
   xhttp.open("GET", "/run/" + locationInfo.state, true);
+  xhttp.send();
+}
+function runGetLocations() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var eventResponse = JSON.parse(this.responseText);
+        var eventResults = eventResponse['results'];
+        console.log(eventResponse);
+        beginLon = eventResults['BEGIN_LON'];
+        endLon = eventResults['END_LON'];
+        beginLat = eventResults['BEGIN_LAT'];
+        endLat = eventResults['END_LAT'];
+        console.log(beginLat);
+        console.log(beginLon);
+        //console.log(endLon);
+        //console.log(endLat);
+        var eventLatLon = [];
+        for(var key in beginLat) {
+          var value = [beginLat[key],beginLon[key]];
+          eventLatLon.push(value);
+        }
+        console.log(eventLatLon);
+	      //document.getElementById("highThreat").innerHTML = this.responseText;
+}
+  };
+  xhttp.open("GET", "/getevents/" + locationInfo.state, true);
   xhttp.send();
 }
 </script>
