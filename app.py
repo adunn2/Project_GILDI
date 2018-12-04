@@ -108,14 +108,24 @@ def success():
 def locateMe():
     return render_template('map.html', google_api_key=google_api_key )
 
-@app.route("/run")
-def run():
-    res = runDataApp()
+@app.route("/run/<state>")
+def run(state):
+    res = runDataApp(state)
     if res.status_code == requests.codes.ok:
         res = res.json()
         return jsonify(res)
     else:
         return render_template('error.html', response_code=res.status_code )
+
+@app.route("/getevents/<state>")
+def getEvents(state):
+    res = runGetEventLocations(state)
+    if res.status_code == requests.codes.ok:
+        res = res.json()
+        return jsonify(res)
+    else:
+        return render_template('error.html', response_code=res.status_code )
+
 
 @app.route("/alerts")
 def alertMe():

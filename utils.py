@@ -12,10 +12,18 @@ def loadCreds(fileName = "api_credentials.json"):
         print("File load error\n", e)
 
 
-# This makes a simple request to the National weather service to get the first 10 active weather alerts.
-def runDataApp():
+# This makes a simple request to the data parsing code.
+def runDataApp(state):
+    payload = {'state': state}
     dataEndpoint ="http://projectgildi_flaskdataapp_1:5091"
-    res = requests.get(dataEndpoint)
+    res = requests.get(dataEndpoint, params=payload)
+    return res
+
+# This makes a simple request to get event coordinates.
+def runGetEventLocations(state):
+    payload = {'state': state.upper()}
+    dataEndpoint ="http://projectgildi_flaskdataapp_1:5091/events"
+    res = requests.get(dataEndpoint, params=payload)
     return res
 
 

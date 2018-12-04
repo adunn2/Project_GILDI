@@ -30,7 +30,7 @@
       {% for info in response %}
       <div class="blog-post">
         <h2 class="blog-post-title">{{ info.properties.headline }}</h2>
-        <p class="blog-post-meta">{{ info.id }} <a href="#">test</a></p>
+        <p class="blog-post-meta"><a href="{{ info.id }}"> {{ info.id }} </a></p>
         <h3>{{ info.properties.severity }}</h3>
         <p>{{ info.properties.description }}</p> -->
       </div><!-- /.blog-post -->
